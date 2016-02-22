@@ -4,22 +4,18 @@
 
 Open up your terminal window
 
-Create a new group for executing backup operations
+Create a new group for executing backup operations, and add yourself to it
 
-`sudo addgroup backup-operator`
+  sudo addgroup backup-operator
+  sudo adduser <your-username> backup-operator
 
-Add yourself to the newly created group
+Close your session and log back in.
+Create a new directory for backup operations, a give the new group full permissions
 
-`sudo adduser <your-username> backup-operator`
+  sudo mkdir -p /usr/local/bin/backup
+  sudo chgrp backup-operator /usr/local/bin/backup
+  sudo chmod g+rwx /usr/local/bin/backup
+  
+Download the backup scripts, and configure setup your cronjob
 
-Create a new directory for your backups
-
-`sudo mkdir -p /usr/local/bin/backup`
-
-Give the new group full permissions on the newly created directory
-
-`sudo chgrp backup-operator /usr/local/bin/backup`
-`sudo chmod g+rwx /usr/local/bin/backup`
-
-
-git clone https://github.com/pedro2555/linux-backup-scripts.git /usr/local/bin/backup
+  git clone https://github.com/pedro2555/linux-backup-scripts.git /usr/local/bin/backup
